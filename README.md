@@ -1,11 +1,11 @@
 # home_environment
 A home workspace environment that sets up bashrc and aliases
 
-1) Clone this repo into your home directory and leave it there
+1) Clone this repo into your $HOME directory and leave it there
 
-2) Include '.mybashrc_extension' file in your .bashrc
+2) Include '.bashrc_extension' file in your .bashrc
    eg:
-     source ~/home_workspace/.mybashrc_extension
+     source $HOME/home_environment/.bashrc_extension
 
 
 
