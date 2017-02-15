@@ -1,0 +1,33 @@
+#!/bin/bash
+
+PROGNAME=`basename $0`
+
+if test -z "${1}" ; then
+    echo "${PROGNAME} substitution of a pattern in a directory tree"
+    echo $PROGNAME '[pattern]' '[new string]'
+    exit -1
+fi
+
+PREFIX="__"`date '+%Y%m%d_%H%M%S'`"_${PROGNAME}__"
+
+for FILE in `ls -a` ; do
+    if test '(' $FILE != "." ')' -a '(' $FILE != ".." ')' ; then
+        if test -d $FILE ; then        # if dir, then enter and call this program 
+            builtin cd $FILE           # recoursively on in it
+            echo " ** ${FILE}..."
+            $0 $1 $2
+            builtin cd '..'
+        else                                         # if file 
+            grep $1 $FILE > /dev/null 2> /dev/null   # pattern present in the file ? 
+            if test $? -eq 0 ; then                 # yes, let's go  
+                echo " - ${FILE}"
+                sed "s/${1}/${2}/g" $FILE > "${PREFIX}${FILE}"
+                rm -f $FILE
+                mv "${PREFIX}${FILE}" $FILE
+            fi
+        fi
+    fi
+done
+
+exit 0
+

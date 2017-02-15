@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if test ! -e 'cscope.out' ; then
+    echo -n "No database, wanna create it? (y/n) "
+    read LINE
+    if test "${LINE}" = "y" -o "${LINE}" = "Y" ; then
+        csd
+    else
+        exit 0
+    fi
+fi
+
+cscope -d
+
+

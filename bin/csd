@@ -1,0 +1,23 @@
+#!/bin/sh
+
+#
+# First, collect files that need to be indexed
+#
+
+sources || exit 1
+
+#
+# Then create the cscope database
+#
+
+echo -n "Indexing ... "
+echo -n "cscope "
+rm -f ncscope.out cscope.in.out cscope.po.out cscope.out
+cscope -b -q -k -R > /dev/null 2> /dev/null
+# echo -n "ctags "
+# ctags -R
+echo " ... Done"
+
+exit 0
+
+
