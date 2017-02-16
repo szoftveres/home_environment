@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# crun source.c args
+
+if test -z "${1}" ; then
+    echo "${PROGNAME} running a C program as if it was a script"
+    echo "${PROGNAME} [source.c] list of args..."
+    exit -1
+fi
+
+PREFIX="__"`date '+%Y%m%d_%H%M%S'`"_${PROGNAME}_"`basename $1`"___"
+
+
+cleanup () 
+{
+    rm -rf "${PREFIX}.c"
+    rm -rf "${PREFIX}.bin"
+}
+
+echo "" > "${PREFIX}.c" || cleanup
+
+echo '#include <stdio.h>' >> "${PREFIX}.c" || cleanup
+
+echo '#include <stdint.h>' >> "${PREFIX}.c" || cleanup
+echo '#include <string.h>' >> "${PREFIX}.c" || cleanup
+echo '#include <stdlib.h>' >> "${PREFIX}.c" || cleanup
+echo '#include <sys/socket.h>' >> "${PREFIX}.c" || cleanup
+echo '#include <sys/types.h>' >> "${PREFIX}.c" || cleanup
+echo '#include <pthread.h>' >> "${PREFIX}.c" || cleanup
+cat $1 >> "${PREFIX}.c"
+
+gcc -O0 -lpthread -o "${PREFIX}.bin" "${PREFIX}.c" || cleanup
+shift
+
+"./${PREFIX}.bin" $*
+
+RETVAL=$?
+
+cleanup
+
+exit $RETVAL

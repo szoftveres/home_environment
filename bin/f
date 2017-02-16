@@ -1,0 +1,50 @@
+#!/bin/sh
+
+oldIFS=$IFS
+
+EDITOR='vim'
+MOVECMD='+:'
+
+# $1 keresett pattern
+# return 0 : error/exit      1 : ok/continue 
+
+ff () {
+    export IFS=$'\n'
+    # LIST=`egrep -rnI --color=always $1 * 2> /dev/null`
+    LIST=`egrep -rnI $1 * 2> /dev/null`
+    select ITEM in $LIST
+    do
+        export IFS=$oldIFS
+
+        FILE=`echo $ITEM | awk 'BEGIN {FS=":"} {print $1}'`
+        LINE=`echo $ITEM | awk 'BEGIN {FS=":"} {print $2}'`
+
+        if test -f "${FILE}"
+        then
+            $EDITOR "${MOVECMD}${LINE}" "${FILE}"
+        else
+            echo "${REPLY} ???"
+        fi
+        export IFS=$'\n'
+    done
+    export IFS=$oldIFS
+    return 1
+}
+
+#
+#
+#
+if test -z "${1}" ; then
+    while read -p "> " LINE
+    do
+        if test -n "${LINE}" ; then
+            ff "${LINE}"
+        fi
+    done
+    echo
+else
+    ff "${1}"
+fi
+
+exit 0
+
