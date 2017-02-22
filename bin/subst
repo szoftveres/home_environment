@@ -3,8 +3,8 @@
 PROGNAME=`basename $0`
 
 if test -z "${1}" ; then
-    echo "${PROGNAME} substitution of a pattern in a directory tree"
-    echo $PROGNAME '[pattern]' '[new string]'
+    echo "${PROGNAME} : substitution of a pattern in a directory tree"
+    echo "    ${PROGNAME} [pattern] [new string]"
     exit -1
 fi
 
