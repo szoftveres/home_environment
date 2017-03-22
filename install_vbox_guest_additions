@@ -1,0 +1,9 @@
+apt-get install linux-headers-$(uname -r)
+apt-get install make
+apt-get install gcc
+
+
+
+- /dev/sr0        /media/cdrom0   udf,iso9660 user,noauto     0       0
++ /dev/sr0        /media/cdrom0   udf,iso9660 user,exec     0       0
+

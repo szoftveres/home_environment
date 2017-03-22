@@ -8,9 +8,7 @@
 
 # ====== 
 
-if [ -f `pwd`/home_environment/.bash_aliases_he ]; then
-    . `pwd`/home_environment/.bash_aliases_he
-fi
+source $HOME/home_environment/.bash_aliases_he
 
 # ====== 
 
@@ -22,12 +20,17 @@ cd ()
 # ====== 
 
 if test `whoami` = 'root' ; then
-    PS1='\[\033[01;34m\][\[\033[01;31m\]\u\[\033[01;34m\]@\[\033[01;33m\]\h\[\033[01;34m\]] \[\033[01;31m\]\w\n\[\033[00m\]'
+    PS1="\[\033[01;34m\][\[\033[01;31m\]\u\[\033[01;34m\]@\[\033[01;33m\]\h\[\033[01;34m\]] ${PROMPT_SPEC}\[\033[01;31m\]\w\n\[\033[00m\]"
 else
-    PS1='\[\033[01;34m\][\u@\[\033[01;33m\]\h\[\033[01;34m\]] \[\033[01;31m\]\w\n\[\033[00m\]'
+    PS1="\[\033[01;34m\][\u@\[\033[01;33m\]\h\[\033[01;34m\]] ${PROMPT_SPEC}\[\033[01;31m\]\w\n\[\033[00m\]"
 fi
 
 # ====== 
 
-export PATH=$PATH:`pwd`/home_environment/bin
+export CSCOPE_EDITOR=vim
+export GIT_EDITOR=vim
+export EDITOR=vim
+export VISUAL=vim
+
+export PATH=$PATH:$HOME/home_environment/bin
 
