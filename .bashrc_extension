@@ -22,7 +22,7 @@ cd ()
 if test -n "${PROMPT_SPEC}" ; then
    PROMPT_SPEC__="(${PROMPT_SPEC}) "
 else
-   PROMPT_SPEC__=" "
+   PROMPT_SPEC__=""
 fi
 
 
