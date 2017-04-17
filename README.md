@@ -7,5 +7,18 @@ A good home environment for UNIX OSes with GNU/Bash
     2) Include '.bashrc_extension' file in your .bashrc
        echo "source ${HOME}/home_environment/.bashrc_extension" >> ~/.bashrc
 
-Works with various Linux distros, MINIX 3 and Mac OS X
+bin/
+ * crun - run a simple C program as if it was a script
+ * f - interactive recursive egrep
+ * subst - recursive sed 's/././g', perfect tool for renaming variables
+ * mydiff - advanced context based diff and review tool
+ * sources - collect all source code files into sources.list
+ * csd - generate cscope database
+ * tagdd - generate ctags database
+ * cs - call cscope
+
+Tested with:
+ * Various Linux distros
+ * MINIX 3
+ * Mac OS X
 

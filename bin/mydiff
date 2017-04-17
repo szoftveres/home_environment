@@ -1,61 +1,61 @@
 #!/bin/bash
 
-if [[ "$1" == "" || "$2" == "" ]]
+if [[ "${1}" == "" || "${2}" == "" ]]
 then
     echo "Usage: "
-    echo "    "$0" [dir 1] [dir 2] [<keyword>]"
+    echo "    ${0} [dir 1] [dir 2] [<context (regexp)>]"
     exit 0
 fi
 
 EXIT="___Exit___"
 
-LIST=$EXIT
+LIST="${EXIT}"
 
 WD=`pwd`
 
-cd $1 || exit 1 
+cd "${1}" || exit 1 
 DIR1=`pwd`      # obtaining full dir name
-cd $WD || exit 1
+cd "${WD}" || exit 1
 
-cd $2 || exit 1 
+cd "${2}" || exit 1 
 DIR2=`pwd`      # obtaining full dir name
-cd $WD || exit 1
+cd "${WD}" || exit 1
 
-cd $DIR1 || exit 1 # cd into DIR1
+cd "${DIR1}" || exit 1 # cd into DIR1
 
 echo
 
-if [[ "$3" == "" ]]
+if [[ "${3}" == "" ]]
 then
-    echo "Generating list (no keyword) ..."
+    echo "Generating list (no specific context) ..."
     HIGHLIGHT=""
 else
-    echo "Generating list according to keyword "$3" ..."
-    HIGHLIGHT="+/"$3 # VIM ezzel fog ramenni a keywordre
+    echo "Generating list with context \'${3}\' ..."
+    HIGHLIGHT="+/${3}" # VIM ezzel fog ramenni a keywordre
 fi
 
 for FNAME in *
 do    
-    if test -f $DIR2"/"$FNAME # Megnezzuk h a masik konyvtarban is van-e ilyen file 
+    if test -f "${DIR2}/${FNAME}" # Megnezzuk h a masik konyvtarban is van-e ilyen file 
     then # Ha van akkor megnezzuk hogy kulonboznek-e egymastol
-        diff -q $DIR1"/"$FNAME $DIR2"/"$FNAME > /dev/null
-        if [[ $? == "1" ]]
+        diff -q "${DIR1}/${FNAME}" "${DIR2}/${FNAME}" > /dev/null
+        if [[ "${?}" == "1" ]]
         then
-            if [[ "$3" == "" ]]
+            if [[ "${3}" == "" ]]
             then   # Ha nincs keyword akkor mehet a listaba
-                LIST=$LIST" "$FNAME
+                LIST="${LIST} ${FNAME}"
             else   # Ha van keyword akkor megnezzuk hogy benne van-e a diffben 
-                diff $DIR1"/"$FNAME $DIR2"/"$FNAME | grep $3 > /dev/null
-                if [[ $? == "0" ]]
+                diff "${DIR1}/${FNAME}" "${DIR2}/${FNAME}" | egrep "${3}" > /dev/null
+                if [[ "${?}" == "0" ]]
                 then
-                    LIST=$LIST" "$FNAME
+                    LIST="${LIST} ${FNAME}"
                 fi
             fi
         fi
     fi 
 done
 
-if [[ $LIST == $EXIT ]]
+if [[ "${LIST}" == "${EXIT}" ]]
 then
     echo "No difference found ..."
     exit 0
@@ -63,13 +63,13 @@ fi
 
 echo
 
-select ITEM in $LIST
+select ITEM in "${LIST}"
 do
-    if [[ $ITEM == $EXIT ]]
+    if [[ "${ITEM}" == "${EXIT}" ]]
     then 
         exit 0
     else
-        vim -d $HIGHLIGHT $DIR1"/"$ITEM $DIR2"/"$ITEM || exit 1 
+        vim -d "${HIGHLIGHT}" "${DIR1}/${ITEM}" "${DIR2}/${ITEM}" || exit 1 
     fi
 done
 
