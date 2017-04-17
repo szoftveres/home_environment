@@ -7,5 +7,5 @@ A good home environment for UNIX OSes with GNU/Bash
     2) Include '.bashrc_extension' file in your .bashrc
        echo "source ${HOME}/home_environment/.bashrc_extension" >> ~/.bashrc
 
-Works with various Linux distros and Mac OS X
+Works with various Linux distros, MINIX 3 and Mac OS X
 
