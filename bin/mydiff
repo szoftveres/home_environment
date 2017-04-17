@@ -30,7 +30,7 @@ then
     echo "Generating list (no specific context) ..."
     HIGHLIGHT=""
 else
-    echo "Generating list with context \'${3}\' ..."
+    echo "Generating list with context '${3}' ..."
     HIGHLIGHT="+/${3}" # VIM ezzel fog ramenni a keywordre
 fi
 
@@ -69,7 +69,7 @@ do
     then 
         exit 0
     else
-        vim -d "${HIGHLIGHT}" "${DIR1}/${ITEM}" "${DIR2}/${ITEM}" || exit 1 
+        vim -d $HIGHLIGHT "${DIR1}/${ITEM}" "${DIR2}/${ITEM}" || exit 1 
     fi
 done
 
