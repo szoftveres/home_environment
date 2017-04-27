@@ -4,7 +4,7 @@
 apt-get install     bash vim
 
 # dev-general
-apt-get install     cscope ctags gcc g++ git gdb
+apt-get install     cscope ctags gcc g++ git gdb make
 
 # dev-avr
 apt-get install     gcc-avr avr-libc avrdude
