@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# this script makes the CPU work very hard
+
+
+for i in `seq 1 10` ;
+do 
+    time seq -f '4/%g' 1 2 999999 | paste -sd-+ | bc -l &
+         seq -f '4/%g' 1 2 999999 | paste -sd-+ | bc -l > /dev/null &
+         seq -f '4/%g' 1 2 999999 | paste -sd-+ | bc -l > /dev/null &
+         seq -f '4/%g' 1 2 999999 | paste -sd-+ | bc -l > /dev/null
+done
+

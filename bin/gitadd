@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git status | awk '{if ($1 == "modified:") {print $2;} }' | xargs git add
+
