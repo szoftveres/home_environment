@@ -8,7 +8,7 @@ FILENAME='cscope.files'
 
 echo "" > $FILENAME
 echo Looking for source files in `pwd`
-find -L . -name '*.[chs]' -o -name '*.ddl' -o -name '*.evd' -o -name '*.asm' -o -name '*.inc' -o -name '*.cc' -o -name '*.cpp' -o -name '*.java' >> $FILENAME 2> /dev/null
+find -L . -name '*.[chs]' -o -name '*.ddl' -o -name '*.evd' -o -name '*.asm' -o -name '*.inc' -o -name '*.cc' -o -name '*.cpp' -o -name '*.java' -o -name '*.py'>> $FILENAME 2> /dev/null
 
 exit 0
 
