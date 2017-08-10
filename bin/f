@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 oldIFS=$IFS
 
@@ -12,7 +12,7 @@ ff () {
     export IFS=$'\n'
     # LIST=`egrep -rnI --color=always $1 * 2> /dev/null`
     LIST=`egrep -rnI $1 * 2> /dev/null`
-    select ITEM in $LIST
+    select ITEM in $LIST ;
     do
         export IFS=$oldIFS
 

@@ -10,6 +10,7 @@ A good home environment for UNIX OSes with GNU/Bash
 bin/
  * crun - run a simple C program as if it was a script
  * f - interactive recursive egrep
+ * ishidden - returns true '0' if file name begins with dot
  * subst - recursive sed 's/././g', perfect tool for renaming variables
  * mydiff - advanced context based diff and review tool
  * sources - collect all source code files into sources.list
