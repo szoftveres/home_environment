@@ -8,7 +8,7 @@ MOVECMD='+:'
 # $1 keresett pattern
 # return 0 : error/exit      1 : ok/continue 
 
-ff () {
+ffunc () {
     export IFS=$'\n'
     # LIST=`egrep -rnI --color=always $1 * 2> /dev/null`
     LIST=`egrep -rnI $1 * 2> /dev/null`
@@ -38,12 +38,12 @@ if test -z "${1}" ; then
     while read -p "> " LINE
     do
         if test -n "${LINE}" ; then
-            ff "${LINE}"
+            ffunc "${LINE}"
         fi
     done
     echo
 else
-    ff "${1}"
+    ffunc "${1}"
 fi
 
 exit 0
