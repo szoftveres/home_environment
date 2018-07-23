@@ -1,0 +1,4 @@
+#!/bin/bash
+
+csd || exit 1
+tagd || exit 1
