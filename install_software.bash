@@ -9,6 +9,9 @@ apt-get install     cscope ctags gcc g++ git gdb make
 # dev-avr
 apt-get install     gcc-avr avr-libc avrdude
 
+# gui-mate
+apt-get install     mozo
+
 # gui-graphics
 apt-get install     dia shotwell gimp
 
@@ -25,7 +28,7 @@ apt-get install     meld wireshark
 apt-get install     pidgin firefox
 
 # gui-game
-apt-get install     dosbox
+apt-get install     dosbox vice
 
 
 
