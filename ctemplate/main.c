@@ -2,12 +2,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-int asmnum(void);
 
-char* asmstring(void);
+char* asm_string (void);
+int asm_strlen (char* s);
+
 
 int
 main (void) {
-    printf("%s (len:%i)\n", asmstring(), asmnum());
+    printf("%s, %i\n", asm_string(), asm_strlen("aaa"));
     return 0;
 }

@@ -9,13 +9,14 @@ CC = gcc
 AS = gcc
 LD = gcc
 CFLAGS = -Wall -Wextra # -Werror
-ASFLAGS = 
+ASFLAGS =
+ 
+## NOTE: PIE can be used if we're not defining .data in the asm
 LDFLAGS = -g -no-pie
 
 ## Objects that must be built in order to link
-## XXX The order is important, asmstart MUST be the first one !!
-OBJECTS = $(OBJDIR)/asmsrc.o          \
-          $(OBJDIR)/main.o            \
+OBJECTS = $(OBJDIR)/main.o          \
+          $(OBJDIR)/asmsrc.o            \
 
 
 ## Build both compiler and program
