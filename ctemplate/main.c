@@ -4,8 +4,10 @@
 
 int asmnum(void);
 
+char* asmstring(void);
+
 int
 main (void) {
-    printf("Hello %i\n", asmnum());
+    printf("%s (len:%i)\n", asmstring(), asmnum());
     return 0;
 }
